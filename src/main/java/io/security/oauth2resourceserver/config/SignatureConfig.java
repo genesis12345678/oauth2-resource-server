@@ -7,6 +7,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.gen.OctetSequenceKeyGenerator;
 import com.nimbusds.jose.jwk.gen.RSAKeyGenerator;
 import io.security.oauth2resourceserver.signature.MacSecuritySigner;
+import io.security.oauth2resourceserver.signature.RsaPublicKeySecuritySigner;
 import io.security.oauth2resourceserver.signature.RsaSecuritySigner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +39,10 @@ public class SignatureConfig {
                 .keyID("macKey")
                 .algorithm(JWSAlgorithm.HS256)
                 .generate();
+    }
 
+    @Bean
+    public RsaPublicKeySecuritySigner rsaPublicKeySecuritySigner() {
+        return new RsaPublicKeySecuritySigner();
     }
 }
