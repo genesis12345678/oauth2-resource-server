@@ -1,6 +1,5 @@
-package io.security.oauth2resourceserver;
+package io.security.oauth2resourceserver.controller;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 
     @GetMapping("/")
-    public Authentication index(Authentication authentication) {
-        return authentication;
+    public String index() {
+        return "index";
     }
 }
