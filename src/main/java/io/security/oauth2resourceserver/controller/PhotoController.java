@@ -19,13 +19,22 @@ public class PhotoController {
     }
 
     @GetMapping("/photos/2")
-    @PreAuthorize("hasAnyAuthority('SCOPE_photo')")
     public Photo photo2() {
         return Photo.builder()
                 .photoId("2")
                 .photoTitle("Photo 2 Title")
                 .photoDescription("Photo is nice")
                 .userId("user2")
+                .build();
+    }
+
+    @GetMapping("/photos/3")
+    public Photo photo3() {
+        return Photo.builder()
+                .photoId("3")
+                .photoTitle("Photo 3 Title")
+                .photoDescription("Photo is nice")
+                .userId("user3")
                 .build();
     }
 }
