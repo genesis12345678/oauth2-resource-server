@@ -1,5 +1,7 @@
 package io.security.oauth2resourceserver.config;
 
+import io.security.oauth2resourceserver.CustomOpaqueTokenIntrospector;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +18,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -27,6 +28,7 @@ public class SecurityConfig {
         return http.build();
     }
 
+/*
     @Bean
     public OpaqueTokenIntrospector opaqueTokenIntrospector(OAuth2ResourceServerProperties properties) {
         OAuth2ResourceServerProperties.Opaquetoken opaquetoken = properties.getOpaquetoken();
@@ -36,5 +38,10 @@ public class SecurityConfig {
                 opaquetoken.getClientSecret()
         );
     }
+*/
 
+    @Bean
+    public OpaqueTokenIntrospector opaqueTokenIntrospector(OAuth2ResourceServerProperties properties) {
+        return new CustomOpaqueTokenIntrospector(properties);
+    }
 }
